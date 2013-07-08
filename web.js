@@ -3,19 +3,20 @@ var fs = require('fs');
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-
+/*
 var con=fs.readFile('/index.html', function (err, data) {
   if (err) throw err;
-  console.log(data);
+  return data;
 });
+*/
+var indexcontent=fs.readFile('/index.html');
+console.log('hello testing'+indexcontent);
 
-//var indexcontent=fs.readFile('index.html');
-//console.log('hello testing'+indexcontent);
 
 
-/*
 buf = new Buffer(indexcontent.length);
-
+console.log('length'+buf);
+/*
 for (var i = 0; i < indexcontent.length ; i++) {
   buf[i] = indexcontent.charCodeAt(i);
 }*/
