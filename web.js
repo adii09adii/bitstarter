@@ -4,8 +4,7 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
 
-var indexcontent=fs.readFile('/index.html');
-console.log(indexcontent);
+var indexcontent=fs.readFile('../../index.html');
 buf = new Buffer(indexcontent.length);
 
 for (var i = 0; i < indexcontent.length ; i++) {
