@@ -9,13 +9,13 @@ var con=fs.readFile('/index.html', function (err, data) {
   return data;
 });
 */
-var indexcontent=fs.readFile('/index.html');
+var indexcontent=fs.readFileSync('/index.html',[encoding]);
 console.log('hello testing'+indexcontent);
 
 
 
-buf = new Buffer(indexcontent.length);
-console.log('length'+buf);
+//buf = new Buffer(indexcontent.length);
+//console.log('length'+buf);
 /*
 for (var i = 0; i < indexcontent.length ; i++) {
   buf[i] = indexcontent.charCodeAt(i);
