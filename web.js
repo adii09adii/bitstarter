@@ -3,7 +3,13 @@
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-  response.send('trying index.html');
+var indexcontent=fs.readFile(index.html);
+buf = new Buffer(indexcontent.length);
+
+for (var i = 0; i < indexcontent.length ; i++) {
+  buf[i] = indexcontent.charCodeAt(i);
+}
+  response.send(buf);
 });
 
 var port = process.env.PORT || 5000;
