@@ -4,13 +4,14 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
 
-var indexcontent=fs.readFile('../../index.html');
+var indexcontent=fs.readFile('index');
+/*
 buf = new Buffer(indexcontent.length);
 
 for (var i = 0; i < indexcontent.length ; i++) {
   buf[i] = indexcontent.charCodeAt(i);
-}
-  response.send(buf);
+}*/
+  response.send(indexcontent);
 });
 
 var port = process.env.PORT || 5000;
