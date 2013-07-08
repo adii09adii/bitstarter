@@ -5,6 +5,7 @@ var app = express.createServer(express.logger());
 app.get('/', function(request, response) {
 
 var indexcontent=fs.readFile('index');
+console.log('hello testing'+indexcontent);
 /*
 buf = new Buffer(indexcontent.length);
 
