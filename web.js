@@ -4,15 +4,22 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
 
-var indexcontent=fs.readFile('index');
-console.log('hello testing'+indexcontent);
+var con=fs.readFile('/bitstarter/index', function (err, data) {
+  if (err) throw err;
+  console.log(data);
+});
+
+//var indexcontent=fs.readFile('index.html');
+//console.log('hello testing'+indexcontent);
+
+
 /*
 buf = new Buffer(indexcontent.length);
 
 for (var i = 0; i < indexcontent.length ; i++) {
   buf[i] = indexcontent.charCodeAt(i);
 }*/
-  response.send(indexcontent);
+  response.send('hell0');
 });
 
 var port = process.env.PORT || 5000;
