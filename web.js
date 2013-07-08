@@ -9,7 +9,7 @@ var con=fs.readFile('/index.html', function (err, data) {
   return data;
 });
 */
-var indexcontent=fs.readFileSync('/index.html',[encoding]);
+var indexcontent=fs.readFileSync('/index.html','utf8');
 console.log('hello testing'+indexcontent);
 
 
