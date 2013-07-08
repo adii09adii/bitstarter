@@ -3,13 +3,15 @@ var fs = require('fs');
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-
+/*
 var con=fs.readFileSync('index.html', function (err, data) {
   if (err) throw err;
   return data;
-});
-var x =con.toString('utf8', 0, len)
-//var indexcontent=fs.readFileSync('index.html','utf8');
+});*/
+
+var con=fs.readFileSync('index.html','utf8');
+var x =con.toString('utf8', 0, 30);
+
 console.log('hello testing'+con.toString('utf8', 0, 30));
 
 
