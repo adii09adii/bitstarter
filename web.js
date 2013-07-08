@@ -10,9 +10,9 @@ var con=fs.readFileSync('index.html', function (err, data) {
 });*/
 
 var con=fs.readFileSync('index.html','utf8');
-var x =con.toString('utf8', 0, 30);
+var data =con.toString('utf8', 0, con.length);
 
-console.log('hello testing'+con.toString('utf8', 0, 30));
+
 
 
 
@@ -22,7 +22,7 @@ console.log('hello testing'+con.toString('utf8', 0, 30));
 for (var i = 0; i < indexcontent.length ; i++) {
   buf[i] = indexcontent.charCodeAt(i);
 }*/
-  response.send(x);
+  response.send(data);
 });
 
 var port = process.env.PORT || 5000;
