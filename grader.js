@@ -61,9 +61,9 @@ var clone = function(fn) {
     // http://stackoverflow.com/a/6772648
     return fn.bind({});
 };
-
-var getHtmlFile =  function(result) {    
-    var result = rest.get('http://guarded-lowlands-2137.herokuapp.com/').on('complete');
+var url = 'http://guarded-lowlands-2137.herokuapp.com/';
+var getHtmlFile =  function(url) {    
+    rest.get(url).on('complete', function(result){
 	if (result instanceof Error) {        
         // It's bad    
         sys.puts('Error: ' + result.message);
@@ -76,7 +76,7 @@ var getHtmlFile =  function(result) {
         // If it is 2xx, it's good
         // If not, it's bad    
     }
-};
+});
 
 if(require.main == module) {
     program
