@@ -63,7 +63,7 @@ var clone = function(fn) {
 };
 
 var getHtmlFile =  function(result, response) {    
-    var result = rest.get(url).on('complete');
+    var result = rest.get('http://guarded-lowlands-2137.herokuapp.com/').on('complete');
 	if (result instanceof Error) {        
         // It's bad    
     	} else {
