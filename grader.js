@@ -45,7 +45,7 @@ var infile = getHtmlfile(URLPATH_DEFAULT);
     if(!fs.existsSync(instr)) {
         console.log("%s does not exist. Exiting.", instr);
         process.exit(1); // http://nodejs.org/api/process.html#process_process_exit_code
-    }c
+    }
     return instr;
 
 }; /*
@@ -86,7 +86,7 @@ var getHtmlFile =  function(URLPATH_DEFAULT) {
        //return result;	
         // You may check the value of response : 
        // sys.puts(result);
-        checkHtmlFile(result, checksfile);
+        checkHtmlFile(result, CHECKSFILE_DEFAULT);
         // If not, it's bad    
     }
 });
@@ -95,9 +95,9 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
-       .option('-u,  --url  <url>',       'url to crowdfundersite', URLPATH_DEFAULT)
+       .option('-u,  --url  <url>',       'url to crowdfundersite',clone(getHtmlFile), URLPATH_DEFAULT)
  .parse(process.argv);
-    var x = getHtmlFile(URLPATH_DEFAULT); 
+    //var x = getHtmlFile(URLPATH_DEFAULT); 
     var cheassertFileExistsckJson = checkHtmlFile(program.file, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
     console.log(outJson);
