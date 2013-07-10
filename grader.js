@@ -84,7 +84,7 @@ var getHtmlFile =  function(URLPATH_DEFAULT) {
     	} else {
        //var htmlfile =  fs.writeFileSync(htmlfile, result); 
 	//return htmlfile;
-       return result;	
+       return cheerio.load(result);	
         // You may check the value of response : 
        // sys.puts(result);
        //checkHtmlFile(result, CHECKSFILE_DEFAULT);
