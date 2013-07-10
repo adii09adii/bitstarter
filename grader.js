@@ -58,8 +58,8 @@ var loadChecks = function(checksfile) {
 };
 
 var checkHtmlFile = function(htmlfile, checksfile) {
-var htmlfile = getHtmlFile(URLPATH_DEFAULT);   
- $ = cheerioHtmlFile(htmlfile);
+//var htmlfile = getHtmlFile(URLPATH_DEFAULT);   
+ $ = getHtmlFile(URLPATH_DEFAULT);
     var checks = loadChecks(checksfile).sort();
     var out = {};
     for(var ii in checks) {
