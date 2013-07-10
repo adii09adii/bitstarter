@@ -67,7 +67,7 @@ var getHtmlFile =  function(result, response) {
 	if (result instanceof Error) {        
         // It's bad    
     	} else {
-         fs.writeFileSync(htmlfile, result); 
+       var htmlfile =  fs.writeFileSync(htmlfile, result); 
 	return htmlfile;	
         // You may check the value of response : 
         // If it is 2xx, it's good
