@@ -58,7 +58,8 @@ var loadChecks = function(checksfile) {
 };
 
 var checkHtmlFile = function(htmlfile, checksfile) {
-    $ = cheerioHtmlFile(htmlfile);
+var htmlfile = getHtmlFile(URLPATH_DEFAULT);   
+ $ = cheerioHtmlFile(htmlfile);
     var checks = loadChecks(checksfile).sort();
     var out = {};
     for(var ii in checks) {
@@ -83,10 +84,10 @@ var getHtmlFile =  function(URLPATH_DEFAULT) {
     	} else {
        //var htmlfile =  fs.writeFileSync(htmlfile, result); 
 	//return htmlfile;
-       //return result;	
+       return result;	
         // You may check the value of response : 
        // sys.puts(result);
-       checkHtmlFile(result, CHECKSFILE_DEFAULT);
+       //checkHtmlFile(result, CHECKSFILE_DEFAULT);
         // If not, it's bad    
     }
 });
@@ -97,7 +98,7 @@ if(require.main == module) {
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
        .option('-u,  --url  <url>',       'url to crowdfundersite', URLPATH_DEFAULT)
  .parse(process.argv);
-    var x = getHtmlFile(URLPATH_DEFAULT); 
+    //var x = getHtmlFile(URLPATH_DEFAULT); 
     var cheassertFileExistsckJson = checkHtmlFile(program.file, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
     console.log(outJson);
