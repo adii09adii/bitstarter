@@ -63,7 +63,7 @@ var clone = function(fn) {
 };
 var urlpath = 'http://guarded-lowlands-2137.herokuapp.com/';
 var getHtmlFile =  function(urlpath) {    
-    rest.get(url).on('complete', function(result){
+    rest.get(urlpath).on('complete', function(result){
 	if (result instanceof Error) {        
         // It's bad    
         sys.puts('Error: ' + result.message);
