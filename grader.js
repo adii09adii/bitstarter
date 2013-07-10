@@ -62,13 +62,16 @@ var clone = function(fn) {
     return fn.bind({});
 };
 
-var getHtmlFile =  function(result, response) {    
+var getHtmlFile =  function(result) {    
     var result = rest.get('http://guarded-lowlands-2137.herokuapp.com/').on('complete');
 	if (result instanceof Error) {        
         // It's bad    
+        sys.puts('Error: ' + result.message);
+    this.retry(5000);
     	} else {
-       var htmlfile =  fs.writeFileSync(htmlfile, result); 
-	return htmlfile;	
+       //var htmlfile =  fs.writeFileSync(htmlfile, result); 
+	//return htmlfile;
+       sys.puts(result);	
         // You may check the value of response : 
         // If it is 2xx, it's good
         // If not, it's bad    
