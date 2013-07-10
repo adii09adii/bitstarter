@@ -38,17 +38,17 @@ var assertFileExists = function(infile) {
     }
     return instr;
 };
-/*
-var assertUrlExists = function(inurl) {
-var infile = getHtmlfile(URLPATH_DEFAULT);
- var instr = infile.toString();
-    if(!fs.existsSync(instr)) {
-        console.log("%s does not exist. Exiting.", instr);
-        process.exit(1); // http://nodejs.org/api/process.html#process_process_exit_code
-    }
-    return instr;
+//
+//var assertUrlExists = function(inurl) {
+//var infile = getHtmlfile(URLPATH_DEFAULT);
+// var instr = infile.toString();
+   // if(!fs.existsSync(instr)) {
+       // console.log("%s does not exist. Exiting.", instr);
+     //   process.exit(1); // http://nodejs.org/api/process.html#process_process_exit_code
+   // }
+  //  return instr;
 
-}; /*
+//}; 
 var cheerioHtmlFile = function(htmlfile) {
     return cheerio.load(fs.readFileSync(htmlfile));
 };
