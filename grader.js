@@ -94,8 +94,8 @@ var getHtmlFile =  function(URLPATH_DEFAULT) {
 if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
-        .option('-f, --file <html_file>', 'Path to index.html', clone(asserUrlExists), HTMLFILE_DEFAULT)
-       .option('-u,  --url  <url>',       'url to crowdfundersite', clone(getHtmlFile), URLPATH_DEFAULT)
+        .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
+       .option('-u,  --url  <url>',       'url to crowdfundersite', clone(assertUrlExists), URLPATH_DEFAULT)
  .parse(process.argv);
     var x = getHtmlFile(URLPATH_DEFAULT); 
     var cheassertFileExistsckJson = checkHtmlFile(program.file, program.checks);
