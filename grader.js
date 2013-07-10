@@ -61,8 +61,8 @@ var clone = function(fn) {
     // http://stackoverflow.com/a/6772648
     return fn.bind({});
 };
-var url = 'http://guarded-lowlands-2137.herokuapp.com/';
-var getHtmlFile =  function(url) {    
+var urlpath = 'http://guarded-lowlands-2137.herokuapp.com/';
+var getHtmlFile =  function(urlpath) {    
     rest.get(url).on('complete', function(result){
 	if (result instanceof Error) {        
         // It's bad    
@@ -82,7 +82,7 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
-       .option('-u, --url<url>','url to crowdfundersite', clone(assertFileExists),getHtmlFile(url))
+       .option('-u, --url<url>','url to crowdfundersite', clone(assertFileExists),getHtmlFile(urlpath))
  .parse(process.argv);
     var checkJson = checkHtmlFile(program.file, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
