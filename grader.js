@@ -27,7 +27,7 @@ var cheerio = require('cheerio');
 var rest = require('restler');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
-
+var URLPATH_DEFAULT = 'http://guarded-lowlands-2137.herokuapp.com/';
 var assertFileExists = function(infile) {
     var instr = infile.toString();
     if(!fs.existsSync(instr)) {
@@ -61,8 +61,8 @@ var clone = function(fn) {
     // http://stackoverflow.com/a/6772648
     return fn.bind({});
 };
-var urlpath = 'http://guarded-lowlands-2137.herokuapp.com/';
-var getHtmlFile =  function() {    
+
+var getHtmlFile =  function(URLPATH_DEFAULT) {    
     rest.get('http://guarded-lowlands-2137.herokuapp.com/').on('complete', function(result){
 	if (result instanceof Error) {        
         // It's bad    
@@ -73,7 +73,7 @@ var getHtmlFile =  function() {
 	//return htmlfile;
        return result;	
         // You may check the value of response : 
-        // If it is 2xx, it's good
+        
         // If not, it's bad    
     }
 });
@@ -82,7 +82,7 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
-       .option('-u, --url<url>','url to crowdfundersite', clone(getHtmlFile), getHtmlFile())
+       .option('-u, --url<url>','url to crowdfundersite', clone(getHtmlFile), URLPATH_DEFAULT)
  .parse(process.argv);
     var cheassertFileExistsckJson = checkHtmlFile(program.file, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
