@@ -62,11 +62,25 @@ var clone = function(fn) {
     return fn.bind({});
 };
 
+var getHtmlFile =  function(result, response) {    
+    var result = rest.get(url).on('complete');
+if (result instanceof Error) {        
+        // It's bad    
+    } else {
+       fs.writeFileSync(htmlfile, result); 
+	return htmlfile;	
+        // You may check the value of response : 
+        // If it is 2xx, it's good
+        // If not, it's bad    
+    }
+});
+
 if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
-        .parse(process.argv);
+       .option('-u, --url<url>','url to crowdfundersite', clone(aasertFileExists),htmlfile )
+ .parse(process.argv);
     var checkJson = checkHtmlFile(program.file, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
     console.log(outJson);
