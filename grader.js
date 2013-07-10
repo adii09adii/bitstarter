@@ -99,7 +99,7 @@ if(require.main == module) {
        .option('-u,  --url  <url>',       'url to crowdfundersite', URLPATH_DEFAULT)
  .parse(process.argv);
     //var x = getHtmlFile(URLPATH_DEFAULT); 
-    var cheassertFileExistsckJson = checkHtmlFile(program.file, program.checks);
+    var checkJson = checkHtmlFile(program.file, program.checks);
     var outJson = JSON.stringify(checkJson, null, 4);
     console.log(outJson);
 } else {
