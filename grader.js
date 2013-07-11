@@ -25,11 +25,12 @@ var fs = require('fs');
 var program = require('commander');
 var cheerio = require('cheerio');
 var rest = require('restler');
-var HTMLFILE_DEFAULT = "index.html";
-var CHECKSFILE_DEFAULT = "checks.json";
-var URLPATH_DEFAULT = "http://guarded-lowlands-2137.herokuapp.com/";
-var inurl=false;
+//var HTMLFILE_DEFAULT = "index.html";
+//var CHECKSFILE_DEFAULT = "checks.json";
+//var URLPATH_DEFAULT = "http://guarded-lowlands-2137.herokuapp.com/";
+//var inurl=false;
 
+/*
 var urlPass = function(inurl)
 {
 //console.log("in url pass"+inurl);
@@ -41,11 +42,14 @@ console.log("%s does not exist. Exiting.", instr);
 }
 else{
 //console.log("again------------"+inurl);
-URLPATH_DEFAULT = inurl;
+var URLPATH_DEFAULT = inurl;
 //console.log(URLPATH_DEFAULT);
 return URLPATH_DEFAULT.toString();
 }
 }
+
+*/
+
 var assertFileExists = function(infile) {
 //console.log("testing file name"+ infile);    
 var instr = infile.toString();
@@ -55,6 +59,7 @@ var instr = infile.toString();
     }
     return instr;
 };
+
 //
 //var assertUrlExists = function(inurl) {
 //var infile = getHtmlfile(URLPATH_DEFAULT);
@@ -119,7 +124,7 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists))
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists))
-      .option('-u,  --url  <url>',       'url to crowdfundersite',clone(urlPass))
+      .option('-u,  --url  <url>',       'url to crowdfundersite',clone(getHtmlFile))
  .parse(process.argv);
 //	console.log("getting remote file");
 //var x = urlPass();   
@@ -127,7 +132,7 @@ if(require.main == module) {
 //if(true)
   //  {
 
-       var x= getHtmlFile(URLPATH_DEFAULT); 
+       //var x= getHtmlFile(URLPATH_DEFAULT); 
     //}	//console.log("testing");
    //else
    //{  console.log('I am in file');
