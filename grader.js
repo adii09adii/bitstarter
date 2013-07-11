@@ -117,9 +117,9 @@ var getHtmlFile =  function(URLPATH_DEFAULT) {
 }
 if(require.main == module) {
     program
-        .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
-        .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
-      .option('-u,  --url  <url>',       'url to crowdfundersite',clone(urlPass), URLPATH_DEFAULT)
+        .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists))
+        .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists))
+      .option('-u,  --url  <url>',       'url to crowdfundersite',clone(urlPass))
  .parse(process.argv);
 //	console.log("getting remote file");
 //var x = urlPass();   
