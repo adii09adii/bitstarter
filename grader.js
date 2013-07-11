@@ -28,10 +28,27 @@ var rest = require('restler');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
 var URLPATH_DEFAULT = "http://guarded-lowlands-2137.herokuapp.com/";
+var inurl=false;
 
+var urlPass = function(inurl)
+{
+//console.log("in url pass"+inurl);
+if(inurl==null)
+{
+console.log("%s does not exist. Exiting.", instr);
+        process.exit(1);
 
+}
+else{
+//console.log("again------------"+inurl);
+URLPATH_DEFAULT = inurl;
+//console.log(URLPATH_DEFAULT);
+return URLPATH_DEFAULT.toString();
+}
+}
 var assertFileExists = function(infile) {
-    var instr = infile.toString();
+//console.log("testing file name"+ infile);    
+var instr = infile.toString();
     if(!fs.existsSync(instr)) {
         console.log("%s does not exist. Exiting.", instr);
         process.exit(1); // http://nodejs.org/api/process.html#process_process_exit_code
@@ -51,6 +68,7 @@ var assertFileExists = function(infile) {
 //}; 
 var cheerioHtmlFile = function(htmlfile) {
     return cheerio.load(htmlfile);
+//return cheerio.load(fs.readFileSync(htmlfile));
 };
 
 var loadChecks = function(checksfile) {
@@ -58,7 +76,7 @@ var loadChecks = function(checksfile) {
 };
 
 var checkHtmlFile = function(htmlfile, checksfile) {
-var htmlfile = getHtmlFile(URLPATH_DEFAULT);   
+//var htmlfile = getHtmlFile(URLPATH_DEFAULT);   
  $ = cheerioHtmlFile(htmlfile);
     var checks = loadChecks(checksfile).sort();
     var out = {};
@@ -66,7 +84,9 @@ var htmlfile = getHtmlFile(URLPATH_DEFAULT);
         var present = $(checks[ii]).length > 0;
         out[checks[ii]] = present;
     }
-    return out;
+ var outJson = JSON.stringify(out, null, 4);
+console.log(outJson);
+    //return out;
 };
 
 var clone = function(fn) {
@@ -78,13 +98,16 @@ var clone = function(fn) {
 var getHtmlFile =  function(URLPATH_DEFAULT) {    
     rest.get(URLPATH_DEFAULT).on('complete', function(result){
 	if (result instanceof Error) {        
-        // It's bad    
-        sys.puts('Error: ' + result.message);
-    this.retry(5000);
+        	// It's bad    
+        	sys.puts('Error: ' + result.message);
+   		 this.retry(5000);
     	} else {
-       //var htmlfile =  fs.writeFileSync(htmlfile, result); 
-	//return htmlfile;
-       return (result);	
+
+  var checkJson = checkHtmlFile(result, program.checks);
+  // var outJson = JSON.stringify(checkJson, null, 4);
+//console.log(outJson);
+//		return "tmpIndex.html";
+       		//return (result);	
         // You may check the value of response : 
        // sys.puts(result);
        //checkHtmlFile(result, CHECKSFILE_DEFAULT);
@@ -96,12 +119,24 @@ if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
-       .option('-u,  --url  <url>',       'url to crowdfundersite', clone(getHtmlFile), URLPATH_DEFAULT)
+      .option('-u,  --url  <url>',       'url to crowdfundersite',clone(urlPass), URLPATH_DEFAULT)
  .parse(process.argv);
-    //var x = getHtmlFile(URLPATH_DEFAULT); 
-    var checkJson = checkHtmlFile(program.file, program.checks);
-    var outJson = JSON.stringify(checkJson, null, 4);
-    console.log(outJson);
-} else {
+//	console.log("getting remote file");
+//var x = urlPass();   
+//console.log(x); 
+//if(true)
+  //  {
+
+       var x= getHtmlFile(URLPATH_DEFAULT); 
+    //}	//console.log("testing");
+   //else
+   //{  console.log('I am in file');
+   
+    //var checkJson = checkHtmlFile(x, program.checks);
+    //var outJson = JSON.stringify(checkJson, null, 4);
+    //console.log(outJson);
+    //}
+} 
+else {
     exports.checkHtmlFile = checkHtmlFile;
 }
