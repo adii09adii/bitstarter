@@ -137,11 +137,12 @@ if(require.main == module) {
    //else
    //{  console.log('I am in file');
    
-    //var checkJson = checkHtmlFile(x, program.checks);
-    //var outJson = JSON.stringify(checkJson, null, 4);
+    var checkJson = checkHtmlFile(program.file, program.checks);
+   // var outJson = JSON.stringify(checkJson, null, 4);
     //console.log(outJson);
     //}
 } 
 else {
     exports.checkHtmlFile = checkHtmlFile;
 }
+
